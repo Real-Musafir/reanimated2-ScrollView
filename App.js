@@ -6,20 +6,23 @@ import Animated, {
   withSpring,
   withRepeat,
 } from "react-native-reanimated";
+import Page from "./components/page";
+
+const WORDS = ["what's", "up", "mobile", "devs?"];
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>asdf</Text>
-    </View>
+    <Animated.ScrollView horizontal style={styles.container}>
+      {WORDS.map((title, index) => {
+        return <Page key={index.toString()} title={title} index={index} />;
+      })}
+    </Animated.ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#fff",
   },
 });
