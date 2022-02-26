@@ -12,10 +12,10 @@ import Page from "./components/page";
 const WORDS = ["what's", "up", "mobile", "devs?"];
 
 export default function App() {
-  const translatex = useSharedValue(0);
+  const translateX = useSharedValue(0);
 
   const scrollHandler = useAnimatedScrollHandler((event) => {
-    translatex.value(event.contentOffset.x);
+    translateX.value = event.contentOffset.x;
   });
   return (
     <Animated.ScrollView
@@ -25,7 +25,14 @@ export default function App() {
       style={styles.container}
     >
       {WORDS.map((title, index) => {
-        return <Page key={index.toString()} title={title} index={index} />;
+        return (
+          <Page
+            key={index.toString()}
+            title={title}
+            translateX={translateX}
+            index={index}
+          />
+        );
       })}
     </Animated.ScrollView>
   );
