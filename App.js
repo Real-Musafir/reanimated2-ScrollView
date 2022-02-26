@@ -12,12 +12,15 @@ import Page from "./components/page";
 const WORDS = ["what's", "up", "mobile", "devs?"];
 
 export default function App() {
+  const translatex = useSharedValue(0);
+
   const scrollHandler = useAnimatedScrollHandler((event) => {
-    console.log(event.contentOffset.x);
+    translatex.value(event.contentOffset.x);
   });
   return (
     <Animated.ScrollView
       onScroll={scrollHandler}
+      scrollEventThrottle={16} //means 16 frame per second
       horizontal
       style={styles.container}
     >
