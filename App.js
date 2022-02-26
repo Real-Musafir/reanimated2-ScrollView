@@ -19,6 +19,7 @@ export default function App() {
   });
   return (
     <Animated.ScrollView
+      pagingEnabled ///this is optional
       onScroll={scrollHandler}
       scrollEventThrottle={16} //means 16 frame per second
       horizontal

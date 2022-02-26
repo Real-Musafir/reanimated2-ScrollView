@@ -36,6 +36,29 @@ const Page = ({ index, title, translateX }) => {
       transform: [{ scale }],
     };
   });
+
+  const rTextStyle = useAnimatedStyle(() => {
+    const translateY = interpolate(translateX.value, inputRaneg, [
+      height / 2,
+      0,
+      -height / 2,
+      Extrapolate.CLAMP,
+    ]);
+    const opacity = interpolate(
+      translateX.value,
+      inputRaneg,
+      [-2, 1, -2],
+      Extrapolate.CLAMP
+    );
+    return {
+      opacity,
+      transform: [
+        {
+          translateY,
+        },
+      ],
+    };
+  });
   return (
     <View
       style={[
@@ -44,6 +67,9 @@ const Page = ({ index, title, translateX }) => {
       ]}
     >
       <Animated.View style={[styles.square, rStyle]} />
+      <Animated.View style={[{ position: "absolute" }, rTextStyle]}>
+        <Text style={styles.text}>{title}</Text>
+      </Animated.View>
     </View>
   );
 };
@@ -59,6 +85,12 @@ const styles = StyleSheet.create({
     height: SIZE,
     width: SIZE,
     backgroundColor: "rgba(0,0,256, 0.4)",
+  },
+  text: {
+    fontSize: 70,
+    color: "white",
+    textTransform: "uppercase",
+    fontWeight: "700",
   },
 });
 
