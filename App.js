@@ -5,14 +5,22 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   withRepeat,
+  useAnimatedScrollHandler,
 } from "react-native-reanimated";
 import Page from "./components/page";
 
 const WORDS = ["what's", "up", "mobile", "devs?"];
 
 export default function App() {
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    console.log(event.contentOffset.x);
+  });
   return (
-    <Animated.ScrollView horizontal style={styles.container}>
+    <Animated.ScrollView
+      onScroll={scrollHandler}
+      horizontal
+      style={styles.container}
+    >
       {WORDS.map((title, index) => {
         return <Page key={index.toString()} title={title} index={index} />;
       })}

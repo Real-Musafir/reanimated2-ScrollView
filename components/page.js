@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Dimensions, StyleSheet } from "react-native";
-import Animated from "react-native-reanimated";
+import Animated, { useAnimatedScrollHandler } from "react-native-reanimated";
 
 const { height, width } = Dimensions.get("window");
 const SIZE = width * 0.7;
